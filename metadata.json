@@ -1,6 +1,6 @@
 {
   "name": "Quran Teacher",
-  "description": "Istiqbal Islamic Centre, Mosque & Quran Teacher web application",
+  "description": "QuranTeacher.uk provides online Quran classes for children and adults across the UK, including Quran reading, Noorani Qaida, Tajweed, memorisation and Islamic Studies.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

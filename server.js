@@ -19,10 +19,28 @@ app.use(express.static(publicDir, {
 
 // Route handler for clean URLs and safety
 app.get('*', (req, res) => {
-  const reqPath = req.path.replace(/^\/+|\/+$/g, '');
+  const reqPath = req.path.replace(/^\/+|\/+$/g, '').toLowerCase();
   
   if (!reqPath || reqPath === '') {
     return res.sendFile(path.join(publicDir, 'index.html'));
+  }
+
+  // Handle redirects for removed template pages
+  const legacyRedirects = {
+    'shop': '/service',
+    'shop-single': '/service',
+    'cart': '/register',
+    'checkout': '/register',
+    'donate': '/register',
+    'donation': '/register',
+    'event': '/service',
+    'even': '/service',
+    'event-s2': '/service',
+    'event-single': '/service'
+  };
+
+  if (legacyRedirects[reqPath]) {
+    return res.redirect(301, legacyRedirects[reqPath]);
   }
 
   // Check direct file
@@ -37,18 +55,15 @@ app.get('*', (req, res) => {
     return res.sendFile(htmlFile);
   }
 
-  // Handle common variations
-  if (reqPath === 'even') {
-    return res.sendFile(path.join(publicDir, 'even.html'));
-  }
-  if (reqPath === 'service') {
+  // Common aliases
+  if (reqPath === 'courses' || reqPath === 'classes') {
     return res.sendFile(path.join(publicDir, 'service.html'));
   }
-  if (reqPath === 'event') {
-    return res.sendFile(path.join(publicDir, 'event.html'));
+  if (reqPath === 'trial' || reqPath === 'book-trial' || reqPath === 'free-trial') {
+    return res.sendFile(path.join(publicDir, 'register.html'));
   }
 
-  // Fallback to 404 or index
+  // Fallback to 404
   const notFoundFile = path.join(publicDir, '404.html');
   if (fs.existsSync(notFoundFile)) {
     return res.status(404).sendFile(notFoundFile);
