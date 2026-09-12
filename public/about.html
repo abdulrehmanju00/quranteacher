@@ -360,8 +360,8 @@
             });
         }
 
-        // Scroll Reveal Animation Engine (IntersectionObserver)
-        var revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right');
+        // Comprehensive Site-Wide Scroll Reveal Engine
+        var revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale');
         if ('IntersectionObserver' in window) {
             var revealObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
@@ -371,12 +371,17 @@
                     }
                 });
             }, {
-                threshold: 0.08,
-                rootMargin: '0px 0px -25px 0px'
+                threshold: 0.05,
+                rootMargin: '0px 0px -30px 0px'
             });
 
             revealElements.forEach(function(el) {
-                revealObserver.observe(el);
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('revealed');
+                } else {
+                    revealObserver.observe(el);
+                }
             });
         } else {
             revealElements.forEach(function(el) {

@@ -281,8 +281,8 @@ COMMON_FOOTER = """        <!-- start of footer-section -->
             });
         }
 
-        // Scroll Reveal Animation Engine (IntersectionObserver)
-        var revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right');
+        // Comprehensive Site-Wide Scroll Reveal Engine
+        var revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale');
         if ('IntersectionObserver' in window) {
             var revealObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
@@ -292,12 +292,17 @@ COMMON_FOOTER = """        <!-- start of footer-section -->
                     }
                 });
             }, {
-                threshold: 0.08,
-                rootMargin: '0px 0px -25px 0px'
+                threshold: 0.05,
+                rootMargin: '0px 0px -30px 0px'
             });
 
             revealElements.forEach(function(el) {
-                revealObserver.observe(el);
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('revealed');
+                } else {
+                    revealObserver.observe(el);
+                }
             });
         } else {
             revealElements.forEach(function(el) {
@@ -510,7 +515,7 @@ index_body = """
                 </div>
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
+                        <div class="pillar-feature-card reveal-on-scroll reveal-delay-1" style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
                             <div style="width: 55px; height: 55px; background: rgba(219, 158, 48, 0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                                 <i class="ti-home" style="font-size: 24px; color: #DB9E30;"></i>
                             </div>
@@ -519,7 +524,7 @@ index_body = """
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
+                        <div class="pillar-feature-card reveal-on-scroll reveal-delay-2" style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
                             <div style="width: 55px; height: 55px; background: rgba(219, 158, 48, 0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                                 <i class="ti-time" style="font-size: 24px; color: #DB9E30;"></i>
                             </div>
@@ -528,7 +533,7 @@ index_body = """
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
+                        <div class="pillar-feature-card reveal-on-scroll reveal-delay-3" style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
                             <div style="width: 55px; height: 55px; background: rgba(219, 158, 48, 0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                                 <i class="ti-user" style="font-size: 24px; color: #DB9E30;"></i>
                             </div>
@@ -537,7 +542,7 @@ index_body = """
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
+                        <div class="pillar-feature-card reveal-on-scroll reveal-delay-4" style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
                             <div style="width: 55px; height: 55px; background: rgba(219, 158, 48, 0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                                 <i class="ti-book" style="font-size: 24px; color: #DB9E30;"></i>
                             </div>
@@ -546,7 +551,7 @@ index_body = """
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
+                        <div class="pillar-feature-card reveal-on-scroll reveal-delay-5" style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
                             <div style="width: 55px; height: 55px; background: rgba(219, 158, 48, 0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                                 <i class="ti-heart" style="font-size: 24px; color: #DB9E30;"></i>
                             </div>
@@ -555,7 +560,7 @@ index_body = """
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
+                        <div class="pillar-feature-card reveal-on-scroll reveal-delay-6" style="background: #fff; border-radius: 12px; padding: 35px 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 100%; border-top: 3px solid #DB9E30;">
                             <div style="width: 55px; height: 55px; background: rgba(219, 158, 48, 0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                                 <i class="ti-stats-up" style="font-size: 24px; color: #DB9E30;"></i>
                             </div>
@@ -582,7 +587,7 @@ index_body = """
                 <div class="service-wrap">
                     <div class="row">
                         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                            <div class="service-card reveal-on-scroll">
+                            <div class="service-card reveal-on-scroll reveal-delay-1">
                                 <div class="top-number">
                                     <span>01</span>
                                 </div>
@@ -591,11 +596,11 @@ index_body = """
                                 </div>
                                 <h2>Quran Reading</h2>
                                 <p>Learn to read the Quran correctly from the basics and gradually improve fluency with guided recitation and correct pronunciation.</p>
-                                <a href="service.html#quran-reading">Read More...</a>
+                                <a href="service.html#quran-reading" class="read-more-link">Read More <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                            <div class="service-card reveal-on-scroll">
+                            <div class="service-card reveal-on-scroll reveal-delay-2">
                                 <div class="top-number">
                                     <span>02</span>
                                 </div>
@@ -604,11 +609,11 @@ index_body = """
                                 </div>
                                 <h2>Noorani Qaida</h2>
                                 <p>A structured foundation for beginners learning Arabic letters, vowel signs (Harakat), joining letters, and Quran reading rules.</p>
-                                <a href="service.html#noorani-qaida">Read More...</a>
+                                <a href="service.html#noorani-qaida" class="read-more-link">Read More <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                            <div class="service-card reveal-on-scroll">
+                            <div class="service-card reveal-on-scroll reveal-delay-3">
                                 <div class="top-number">
                                     <span>03</span>
                                 </div>
@@ -617,11 +622,11 @@ index_body = """
                                 </div>
                                 <h2>Quran with Tajweed</h2>
                                 <p>Master the essential rules of Tajweed (Makharij, Ghunnah, Idgham, Madd) to recite the Quran with beauty and precision.</p>
-                                <a href="service.html#tajweed">Read More...</a>
+                                <a href="service.html#tajweed" class="read-more-link">Read More <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                            <div class="service-card reveal-on-scroll">
+                            <div class="service-card reveal-on-scroll reveal-delay-4">
                                 <div class="top-number">
                                     <span>04</span>
                                 </div>
@@ -630,11 +635,11 @@ index_body = """
                                 </div>
                                 <h2>Quran Memorisation</h2>
                                 <p>A structured approach to memorising Surahs or full Hifz with regular teacher assessment, systematic revision, and retention techniques.</p>
-                                <a href="service.html#memorisation">Read More...</a>
+                                <a href="service.html#memorisation" class="read-more-link">Read More <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                            <div class="service-card reveal-on-scroll">
+                            <div class="service-card reveal-on-scroll reveal-delay-5">
                                 <div class="top-number">
                                     <span>05</span>
                                 </div>
@@ -643,11 +648,11 @@ index_body = """
                                 </div>
                                 <h2>Islamic Studies</h2>
                                 <p>Learn essential Islamic knowledge, daily Duas, Kalimahs, prayer methods (Salah), and Islamic manners in an age-appropriate curriculum.</p>
-                                <a href="service.html#islamic-studies">Read More...</a>
+                                <a href="service.html#islamic-studies" class="read-more-link">Read More <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                            <div class="service-card reveal-on-scroll">
+                            <div class="service-card reveal-on-scroll reveal-delay-6">
                                 <div class="top-number">
                                     <span>06</span>
                                 </div>
@@ -656,7 +661,7 @@ index_body = """
                                 </div>
                                 <h2>Children &amp; Adults</h2>
                                 <p>Friendly, engaging lessons designed for children, alongside flexible, private evening schedules for busy adult learners.</p>
-                                <a href="service.html#children-adults">Read More...</a>
+                                <a href="service.html#children-adults" class="read-more-link">Read More <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -678,28 +683,28 @@ index_body = """
                 </div>
                 <div class="row" style="margin-top: 35px;">
                     <div class="col-lg-3 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 30px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
+                        <div class="how-it-works-card reveal-on-scroll reveal-delay-1" style="background: #fff; border-radius: 12px; padding: 30px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
                             <div style="width: 50px; height: 50px; background: #DB9E30; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; margin: 0 auto 20px auto;">1</div>
                             <h4 style="font-size: 19px; font-weight: 700; color: #232f4b; margin-bottom: 12px;">Register</h4>
                             <p style="color: #666; font-size: 14px; line-height: 1.6;">Send your details through our simple registration form or send an online enquiry.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 30px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
+                        <div class="how-it-works-card reveal-on-scroll reveal-delay-2" style="background: #fff; border-radius: 12px; padding: 30px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
                             <div style="width: 50px; height: 50px; background: #DB9E30; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; margin: 0 auto 20px auto;">2</div>
                             <h4 style="font-size: 19px; font-weight: 700; color: #232f4b; margin-bottom: 12px;">Choose a Time</h4>
                             <p style="color: #666; font-size: 14px; line-height: 1.6;">Select lesson days and UK time slots that work smoothly with your routine.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 30px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
+                        <div class="how-it-works-card reveal-on-scroll reveal-delay-3" style="background: #fff; border-radius: 12px; padding: 30px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
                             <div style="width: 50px; height: 50px; background: #DB9E30; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; margin: 0 auto 20px auto;">3</div>
                             <h4 style="font-size: 19px; font-weight: 700; color: #232f4b; margin-bottom: 12px;">Start Your Trial</h4>
                             <p style="color: #666; font-size: 14px; line-height: 1.6;">Begin your free one-to-one online trial lesson and meet your teacher.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-12 mb-4">
-                        <div style="background: #fff; border-radius: 12px; padding: 30px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
+                        <div class="how-it-works-card reveal-on-scroll reveal-delay-4" style="background: #fff; border-radius: 12px; padding: 30px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
                             <div style="width: 50px; height: 50px; background: #DB9E30; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; margin: 0 auto 20px auto;">4</div>
                             <h4 style="font-size: 19px; font-weight: 700; color: #232f4b; margin-bottom: 12px;">Continue Learning</h4>
                             <p style="color: #666; font-size: 14px; line-height: 1.6;">Build confidence in reading, Tajweed or memorisation with regular lessons.</p>
@@ -719,30 +724,33 @@ index_body = """
                 <div class="row">
                     <div class="col-lg-8 col-md-11 col-12">
                         <div class="funfact-content reveal-on-scroll">
-                            <div class="top-content">
-                                <h2 class="title">Start Your Quran Learning Journey</h2>
-                                <h3 class="sudtitle" style="font-size: 28px; font-weight: 700; color: #232f4b; margin: 10px 0 15px 0;">Book a Free Online Trial Lesson</h3>
-                                <p class="text">Take your first step with an online Quran lesson designed around your learning needs. Experience our supportive one-to-one teaching with no commitment required.</p>
+                            <span class="trial-badge"><i class="ti-check-box" style="margin-right: 6px;"></i> START YOUR QURAN LEARNING JOURNEY</span>
+                            <h2 class="section-heading">Book a Free Online Trial Lesson</h2>
+                            <p class="section-subtext">Take your first step with a personalised online Quran lesson designed around your learning needs. Experience our supportive one-to-one teaching with no commitment required.</p>
+                            
+                            <div class="trial-stats-grid">
+                                <div class="trial-stat-card">
+                                    <h3>100%</h3>
+                                    <p>Online Lessons</p>
+                                </div>
+                                <div class="trial-stat-card">
+                                    <h3>1-on-1</h3>
+                                    <p>Personal Attention</p>
+                                </div>
+                                <div class="trial-stat-card">
+                                    <h3>UK</h3>
+                                    <p>Flexible Timings</p>
+                                </div>
+                                <div class="trial-stat-card">
+                                    <h3>All Ages</h3>
+                                    <p>Children &amp; Adults</p>
+                                </div>
                             </div>
-                            <div class="funfact" style="display: flex; flex-wrap: wrap; margin: 25px 0 35px 0;">
-                                <div class="item" style="margin-right: 35px; margin-bottom: 20px;">
-                                    <h2 style="font-size: 38px; color: #DB9E30; font-weight: 800;">100%</h2>
-                                    <h4 style="font-size: 15px; color: #232f4b;">Online Lessons</h4>
-                                </div>
-                                <div class="item" style="margin-right: 35px; margin-bottom: 20px;">
-                                    <h2 style="font-size: 38px; color: #DB9E30; font-weight: 800;">1-on-1</h2>
-                                    <h4 style="font-size: 15px; color: #232f4b;">Personal Attention</h4>
-                                </div>
-                                <div class="item" style="margin-right: 35px; margin-bottom: 20px;">
-                                    <h2 style="font-size: 38px; color: #DB9E30; font-weight: 800;">UK</h2>
-                                    <h4 style="font-size: 15px; color: #232f4b;">Flexible Timings</h4>
-                                </div>
-                                <div class="item" style="margin-bottom: 20px;">
-                                    <h2 style="font-size: 38px; color: #DB9E30; font-weight: 800;">All Ages</h2>
-                                    <h4 style="font-size: 15px; color: #232f4b;">Children &amp; Adults</h4>
-                                </div>
+                            
+                            <div class="trial-btn-wrap">
+                                <a href="register.html" class="theme-btn">Book a Free Trial <i class="ti-arrow-right" style="margin-left: 8px;"></i></a>
+                                <span class="guarantee-tag"><i class="ti-shield"></i> Free 30-Min Lesson · No Commitment</span>
                             </div>
-                            <a href="register.html" class="theme-btn">Book a Free Trial</a>
                         </div>
                     </div>
                 </div>
@@ -875,7 +883,7 @@ index_body = """
                 <div class="blog-wrap">
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-12">
-                            <div class="blog-card reveal-on-scroll" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); background: #fff; height: 100%;">
+                            <div class="blog-card reveal-on-scroll reveal-delay-1" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); background: #fff; height: 100%;">
                                 <div class="image">
                                     <img src="assets/images/blog/1.jpg" alt="How to Start Learning Quran Online" style="width: 100%; height: 220px; object-fit: cover;">
                                 </div>
@@ -888,7 +896,7 @@ index_body = """
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-12">
-                            <div class="blog-card reveal-on-scroll" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); background: #fff; height: 100%;">
+                            <div class="blog-card reveal-on-scroll reveal-delay-2" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); background: #fff; height: 100%;">
                                 <div class="image">
                                     <img src="assets/images/blog/2.jpg" alt="Benefits of Learning Quran with Tajweed" style="width: 100%; height: 220px; object-fit: cover;">
                                 </div>
@@ -901,7 +909,7 @@ index_body = """
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-12">
-                            <div class="blog-card reveal-on-scroll" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); background: #fff; height: 100%;">
+                            <div class="blog-card reveal-on-scroll reveal-delay-3" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); background: #fff; height: 100%;">
                                 <div class="image">
                                     <img src="assets/images/blog/3.jpg" alt="Parent Support for Quran Learning" style="width: 100%; height: 220px; object-fit: cover;">
                                 </div>
